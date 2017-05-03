@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="editor/lib/marked.min.js"></script>
+<script src="editor/lib/prettify.min.js"></script>
+<script src="editor/lib/raphael.min.js"></script>
+<script src="editor/lib/underscore.min.js"></script>
+<script src="editor/lib/sequence-diagram.min.js"></script>
+<script src="editor/lib/flowchart.min.js"></script>
+<script src="editor/lib/jquery.flowchart.min.js"></script>
+<script src="editor/editormd.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var wordsView;
+        wordsView = editormd.markdownToHTML("wordsView", {
+            htmlDecode      : "style,script,iframe",  // you can filter tags decode
+            emoji           : true,
+            taskList        : true,
+            tex             : true,  // 默认不解析
+            flowChart       : true,  // 默认不解析
+            sequenceDiagram : true,  // 默认不解析
+        });
+
+    })
+</script>
+		<script src="editor/editormd.js">
+			var testEditor;
+    $(function() {
+        $.get("examples/test.md", function(md){
+            testEditor = editormd("test-editormd", {
+                width: "98%",
+                height: 730,
+                path : 'lib/',
+                markdown : md,
+                codeFold : true,
+                saveHTMLToTextarea : true,
+                searchReplace : true,
+                htmlDecode : "style,script,iframe|on*",
+                emoji : true,
+                taskList : true,
+                tocm            : true,         // Using [TOCM]
+                tex : true,                   // 开启科学公式TeX语言支持，默认关闭
+                flowChart : true,             // 开启流程图支持，默认关闭
+                sequenceDiagram : true,       // 开启时序/序列图支持，默认关闭,
+                imageUpload : true,
+                imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                imageUploadURL : "examples/php/upload.php",
+                onload : function() {
+                    console.log('onload', this);
+                }
+            });
+        });
+});
+		</script>
+		<link rel="stylesheet" href="editor/css/editormd.css" />
+	</head>
+	<body>
+		<div id="test-editormd">
+  			<textarea name="content"  style="display:none;"></textarea>                                     
+		</div>
+		<div id="wordsView">
+     <textarea style="display:none;" name="editormd-markdown-doc">这里写入md格式内容</textarea>
+</div>
+	</body>
+</html>
