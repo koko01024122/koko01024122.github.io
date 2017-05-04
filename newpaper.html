@@ -233,7 +233,7 @@
             var testObject = new TestObject();
             testObject.set('title', as);
             testObject.save({
-                content: testEditor.getMarkdown()
+                content: testEditor.getHTML()
 
             }).then(function (object) {
                 new $.zui.Messager('发布成功', {

@@ -1,68 +1,35 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello world!</title>
-    <!-- zui -->
-   	<script type="text/javascript" src="initLeanCloud.js"></script>
-   <link href="css/zui.min.css" rel="stylesheet">
-  </head>
-  <body>
-  	<nav class="navbar" role="navigation">
-  <div class="container-fluid">
-    <!-- 导航头部 -->
-    <div class="navbar-header">
-      <!-- 移动设备上的导航切换按钮 -->
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-example">
-        <span class="sr-only">切换导航</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <!-- 品牌名称或logo -->
-      <a class="navbar-brand" href="your/nice/url">ZUI</a>
-    </div>
-    <!-- 导航项目 -->
-    <div class="collapse navbar-collapse navbar-collapse-example">
-      <!-- 一般导航项目 -->
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="newpaper.html">新文章</a></li>
-        <li><a href="your/nice/url">需求</a></li>
-       
-        <!-- 导航中的下拉菜单 -->
-        <li class="dropdown">
-          <a href="your/nice/url" class="dropdown-toggle" data-toggle="dropdown">管理 <b class="caret"></b></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="your/nice/url">任务</a></li>
-           </ul>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/leancloud-storage/dist/av.js"></script>
 
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-        <li><a href="#collapseExample" data-toggle="collapse">音乐播放器</a></li>
-      </ul>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+    <!-- handlebars -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 
+    <script src="js/zui.min.js" type="text/javascript"></script>
+    <script src="//cdn1.lncld.net/static/js/2.2.1/av-min.js"></script>
+    <script src="initLeanCloud.js" type="text/javascript"></script>
 
-        <a href="#collapseExample" data-toggle="collapse" class="btn btn-link">直接使用 href 属性</a>
-
-      <div class="collapse" id="collapseExample">
-        <div class="bg-primary with-padding">
-          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=1&id=1678955&auto=1&height=90"></iframe>
-        </div>
-      </div>
-
-    </div><!-- END .navbar-collapse -->
-  </div>
-</nav>
-
-    <!-- jQuery (ZUI中的Javascript组件依赖于jQuery) -->
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <!-- ZUI Javascript组件 -->
-    <script src="js/zui.min.js"></script>
-
-
-
-
-  </body>
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <link href="css/zui.min.css" rel="stylesheet">
+    <title>欢迎来到大蘑菇的博客</title>
+</head>
+<script type="text/javascript">
+    var query=new AV.Query('Mypapers');
+    query.contains('title','如何做一个侧滑菜单');
+    query.find().then(function (products) {
+        products.forEach(function (product) {
+            alert(product.get('content'))
+        })
+    })
+</script>
 </html>
