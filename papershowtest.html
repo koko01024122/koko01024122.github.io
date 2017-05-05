@@ -70,13 +70,14 @@
     <body>
     <script type="text/javascript">
         var query=new AV.Query('Mypapers');
-        query.contains('title','怎么做侧滑菜单');
+        query.contains('title','如何做一个侧滑菜单');
         query.find().then(function (products) {
             products.forEach(function (product) {
                 alert('已获取到内容')
                 var obj =  document.getElementById("test-editormd-view2");
-                obj.innerHTML=""+product.get('content');
-
+                obj.innerHTML="<textarea id=\"append-test\" style=\"display:none;\">"
+                obj.innerText=""+product.get('content');
+                obj.innerHTML="</textarea>"
                 alert('更改完成'+product.get(content))
             })
         })
@@ -97,26 +98,7 @@
                <textarea style="display:none;" name="test-editormd-markdown-doc">###Hello world!</textarea>               
             </div>
             <div id="test-editormd-view2">
-                <textarea id="append-test" style="display:none;">
 
-
-&lt;style&gt;
-body{background:red;}
-&lt;/style&gt;
-
-&lt;style type="text/style"&gt;
-body{background:red;}
-&lt;/style&gt;
-
-#####Script
-
-&lt;script&gt;
-alert("script");
-&lt;/script&gt;
-
-&lt;script type="text/javscript"&gt;
-alert("script");
-&lt;/script&gt;</textarea>          
             </div>
         </div>
         <!-- <script src="js/zepto.min.js"></script>
