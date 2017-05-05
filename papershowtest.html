@@ -70,12 +70,12 @@
     <body>
     <script type="text/javascript">
         var query=new AV.Query('Mypapers');
-        query.contains('title','如何做一个侧滑菜单');
+        query.contains('title','怎么做侧滑菜单');
         query.find().then(function (products) {
             products.forEach(function (product) {
                 alert('已获取到内容')
                 var obj =  document.getElementById("test-editormd-view2");
-                obj.innerHTML=     '<textarea id="append-test" style="display:none;">'+product.get('content');
+                obj.innerHTML=""+product.get('content');
 
                 alert('更改完成'+product.get(content))
             })
@@ -83,8 +83,7 @@
     </script>
         <div id="layout">
             <header>
-                <h1>Markdown转HTML的显示处理之自定义 ToC 容器</h1> 
-                <p>即：非编辑情况下的HTML预览</p>
+
                 <p>HTML Preview (markdown to html and custom ToC container)</p>       
             </header>
             <div class="btns">
@@ -98,7 +97,7 @@
                <textarea style="display:none;" name="test-editormd-markdown-doc">###Hello world!</textarea>               
             </div>
             <div id="test-editormd-view2">
-
+                <textarea id="append-test" style="display:none;">
 
 
 &lt;style&gt;
@@ -143,7 +142,7 @@ alert("script");
                     
 				    testEditormdView = editormd.markdownToHTML("test-editormd-view2", {
                         markdown        : markdown ,//+ "\r\n" + $("#append-test").text(),
-                        //htmlDecode      : true,       // 开启 HTML 标签解析，为了安全性，默认不开启
+                        htmlDecode      : true,       // 开启 HTML 标签解析，为了安全性，默认不开启
                         htmlDecode      : "style,script,iframe",  // you can filter tags decode
                         //toc             : false,
                         tocm            : true,    // Using [TOCM]

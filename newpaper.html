@@ -227,13 +227,15 @@
 
 
         $('#get-md-btn').on('click', function() {
+
+            alert('html'+testEditor.getHTML() );
+            alert('md'+testEditor.getMarkdown() );
+            alert('String'+testEditor.getAsString() );
             var TestObject = AV.Object.extend('Mypapers');
             var as = document.getElementById("title").value;
 
             var testObject = new TestObject();
             testObject.set('title', as);
-            var file=new AV.File(as+'.md',testEditor.getAsFile());
-            file.save();
             testObject.save({
                 content: testEditor.getHTML()
 
@@ -270,7 +272,6 @@
             alert(testEditor.getHTML());
 
             document.getElementById("demo").innerHTML = testEditor.getHTML();
-
         });
 
         $("#watch-btn").bind('click', function () {
