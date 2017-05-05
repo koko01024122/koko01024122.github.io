@@ -232,6 +232,7 @@
 
             var testObject = new TestObject();
             testObject.set('title', as);
+            testObject.set('md',   testEditor.getAsFile());
             testObject.save({
                 content: testEditor.getHTML()
 
@@ -268,6 +269,7 @@
             alert(testEditor.getHTML());
 
             document.getElementById("demo").innerHTML = testEditor.getHTML();
+
         });
 
         $("#watch-btn").bind('click', function () {
