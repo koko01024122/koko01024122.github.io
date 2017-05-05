@@ -232,7 +232,8 @@
 
             var testObject = new TestObject();
             testObject.set('title', as);
-            testObject.set('md',   testEditor.getAsFile());
+            var file=new AV.File(as+'.md',testEditor.getAsFile());
+            file.save();
             testObject.save({
                 content: testEditor.getHTML()
 
