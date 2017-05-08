@@ -75,13 +75,13 @@
         <div id="layout">
             <header>
 
-                <p>HTML Preview (markdown to html and custom ToC container)</p>       
+              <H1>如何做一个侧滑菜单</H1>
             </header>
             <div class="btns">
-                <button onclick="location.href='./html-preview-markdown-to-html.html';">返回 Back</button>
+
             </div>
             <div id="sidebar">
-                <h1>Table of Contents</h1>
+                <h1>文章目录</h1>
                 <div class="markdown-body editormd-preview-container" id="custom-toc-container">#custom-toc-container</div>
             </div>
             <div id="test-editormd-view">
@@ -110,7 +110,7 @@
             $(function() {
                 var testEditormdView, testEditormdView2;
                 
-                $.get("http://ac-w3omra37.clouddn.com/3c4bc176a28f525bc72d.md", function(markdown) {
+                $.get("http://ac-w3omra37.clouddn.com/fe283d4ad9b5a1bababf.md", function(markdown) {
                     
 				    testEditormdView = editormd.markdownToHTML("test-editormd-view2", {
                         markdown        : markdown ,//+ "\r\n" + $("#append-test").text(),
