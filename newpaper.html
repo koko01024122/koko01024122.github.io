@@ -177,8 +177,17 @@
 
 
     $(function () {
+        var data = { base64: '文件的 base64 编码' };
+        var avatar = new AV.File('avatar.png', data);
 
-        $.get('newone.md', function (md) {
+        var user = new AV.User();
+        var randomUsername = 'Tom';
+        user.setUsername(randomUsername)
+        user.setPassword('leancloud');
+        user.set('avatar',avatar);
+        user.signUp().then(function (u){
+        });
+        $.get('http://ac-w3omra37.clouddn.com/de318c0e639969f4680b.md', function (md) {
             testEditor = editormd("test-editormd", {
                 width: "90%",
                 height: 740,
@@ -227,22 +236,52 @@
 
 
         $('#get-md-btn').on('click', function() {
-
-            alert('html'+testEditor.getHTML() );
-            alert('md'+testEditor.getMarkdown() );
-            alert('String'+testEditor.getAsString() );
-            var TestObject = AV.Object.extend('Mypapers');
+            alert('发布')
             var as = document.getElementById("title").value;
 
-            var testObject = new TestObject();
-            testObject.set('title', as);
-            testObject.save({
-                content: testEditor.getHTML()
 
-            }).then(function (object) {
-                new $.zui.Messager('发布成功', {
-                    close: false // 禁用关闭按钮
-                }).show();
+            var bytes = str2UTF8(testEditor.getMarkdown());
+            var byteArrayFile = new AV.File(as+'.md', bytes);
+            byteArrayFile.save();
+
+
+            function str2UTF8(str){
+                var bytes = new Array();
+                var len,c;
+                len = str.length;
+                for(var i = 0; i < len; i++){
+                    c = str.charCodeAt(i);
+                    if(c >= 0x010000 && c <= 0x10FFFF){
+                        bytes.push(((c >> 18) & 0x07) | 0xF0);
+                        bytes.push(((c >> 12) & 0x3F) | 0x80);
+                        bytes.push(((c >> 6) & 0x3F) | 0x80);
+                        bytes.push((c & 0x3F) | 0x80);
+                    }else if(c >= 0x000800 && c <= 0x00FFFF){
+                        bytes.push(((c >> 12) & 0x0F) | 0xE0);
+                        bytes.push(((c >> 6) & 0x3F) | 0x80);
+                        bytes.push((c & 0x3F) | 0x80);
+                    }else if(c >= 0x000080 && c <= 0x0007FF){
+                        bytes.push(((c >> 6) & 0x1F) | 0xC0);
+                        bytes.push((c & 0x3F) | 0x80);
+                    }else{
+                        bytes.push(c & 0xFF);
+                    }
+                }
+                return bytes;
+            }
+            //  var bytes = [0xBE, 0xEF, 0xCA, 0xFE];
+        //    var byteArrayFile = new AV.File('myfile.txt', bytes);
+        //    byteArrayFile.save();
+         //   alert('html'+testEditor.getHTML() );
+           // alert('md'+testEditor.getMarkdown() );
+           // alert('String'+testEditor.getAsString() );
+         //   var TestObject = AV.Object.extend('Mypapers');
+         //   var as = document.getElementById("title").value;
+
+         //   var testObject = new TestObject();
+        //    testObject.set('title', as);
+
+
 
             });
 
@@ -308,7 +347,7 @@
         $("#toc-default-btn").click(function () {
             testEditor.config("tocDropdown", false);
         });
-    });
+
 </script>
 
 
