@@ -69,28 +69,8 @@
     </head>
     <body>
     <script type="text/javascript">
-        var query=new AV.Query('Mypapers');
-        query.contains('title','如何做一个侧滑菜单');
-        query.find().then(function (products) {
-            products.forEach(function (product) {
-                alert('已获取到内容')
-                //var obj =  document.getElementById("test-editormd-view2");
-
-             //   obj.innerHTML="<textarea id=\"append-test\" style=\"display:none;\">"
-            //    obj.innerText=""+product.get('content');
-              //  obj.innerHTML="</textarea>"
-              //  alert('更改完成'+product.get(content))
 
 
-                var fso=new ActiveXObject(Scripting.FileSystemObject);
-                var f=fso.createtextfile("C:\Users\Administrator\a.txt",2,true);
-              //  f = fso.OpenTextFile('test.txt',2,true);
-                f.writeLine("wo shi di yi hang");
-               // f.WriteLine(product.get(content));
-                f.Close();
-                alert('ok');
-            })
-        })
     </script>
         <div id="layout">
             <header>
